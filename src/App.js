@@ -1,11 +1,25 @@
 import './App.css';
-import Posts from "./components/posts.jsx"
+import { Route, Switch, Redirect } from "react-router-dom";
+import Posts from "./components/posts";
+import Home from "./components/home";
+import Navbar from "./components/navbar";
+import NotFound from "./components/notFound"
 
 function App() {
   return (
-    <main className="containter">
-      <Posts />
-    </main>
+    <div className="containter-fluid">
+      <Navbar />
+      <div className="container">
+        <div className="content">
+          <Switch>
+            <Route path="/posts" component={Posts} />
+            <Route path="/" exact component={Home} />
+            <Route path="/not-found"  component={NotFound} />
+            <Redirect to="/not-found" />
+          </Switch>
+        </div>
+      </div>
+    </div>
   );
 }
 
